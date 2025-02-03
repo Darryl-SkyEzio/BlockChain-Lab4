@@ -1,0 +1,87 @@
+3.1. How many fixes did you make to the sample code with respect to the coding best practices? List
+them down.
+
+1) Used mapping (isInvestor) for efficient lookups
+    - Removed the O(n) loop in addInvestor() and replaced it with a mapping(address => bool), reducing lookup time to O(1).
+
+2) Added a reentrancy guard (nonReentrant) to allocateBonuses() and withdraw()
+    - Prevents potential reentrancy attacks, ensuring that bonuses and withdrawals execute securely.
+
+3) Optimized removeInvestor() using the "swap-and-pop" method
+    - Instead of shifting all elements (O(n)), replaced the investor being removed with the last investor, then popped the last entry, reducing gas costs.
+
+4) Implemented additional event logging
+    - Added InvestorRemoved() to track when investors are removed.
+    - Improved traceability for contract interactions.
+
+5) Updated contract to handle edge cases
+
+    - Prevented duplicate investor entries with isInvestor[_addr] = true.
+    - Handled cases where removeInvestor() is called on an empty array.
+    - Ensured allocateBonuses() only executes if funds are available.
+
+
+3.2. Are there any other instances that can be added as event declarations? If so add them to your
+smart contract
+
+Contract Funding Event
+event ContractFunded(address indexed sender, uint amount);
+
+Emit inside receive() function:
+receive() external payable {
+    emit ContractFunded(msg.sender, msg.value);
+}
+Reason: Helps track when ETH is sent to the contract.
+
+Investment Update Event
+event InvestmentUpdated(address indexed investor, uint oldAmount, uint newAmount);
+Reason: Logs any changes in investment amounts.
+
+
+3.3. Is your revised smart contract optimized for gas? List down the changes that you have made in
+your code by following the lab instructions.
+
+Replaced array-based investor lookup with a mapping(address => bool) isInvestor
+
+Reduced O(n) lookups to O(1), saving gas.
+Optimized removeInvestor() using the "swap-and-pop" method
+
+Instead of shifting all elements (O(n)), swapped with the last element and popped (O(1)).
+Added nonReentrant in allocateBonuses() and withdraw()
+
+Prevents reentrancy attacks and ensures secure ETH transfers.
+Used .call{value: amount}("") instead of .transfer()
+
+.call{value: amount}("") is more gas-efficient and avoids the 2300 gas limit issue.
+
+
+3.4. How to further optimize gas?
+
+Use mapping(address => uint) instead of an array for investors
+
+Eliminates the need for looping through arrays, further reducing gas costs.
+Allow investors to claim their own bonuses instead of auto-paying them
+
+Store pending bonuses in a mapping(address => uint), so investors claim their bonuses themselves.
+Use immutable for constants (BONUS_THRESHOLD, BASE_BONUS_PERCENTAGE, etc.)
+
+Saves gas by storing values directly in bytecode.
+Batch Processing
+
+Instead of looping through all investors, split bonus allocation into multiple transactions.
+
+
+
+3.5. What is the tradeoff that you had to balance in developing this smart contract?
+
+Gas Efficiency vs. Functionality
+
+Using a mapping instead of an array makes lookups cheaper (O(1)) but removes the ability to iterate easily.
+Keeping an array allows batch operations but increases gas costs.
+Security vs. Simplicity
+
+Adding nonReentrant improves security but slightly increases gas costs.
+Decentralization vs. Convenience
+
+The owner currently allocates bonuses (allocateBonuses()).
+A better design would allow investors to claim their own bonuses, shifting complexity to the front-end dApp.

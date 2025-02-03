@@ -31,20 +31,16 @@ contract BonusAllocator is Ownable, ReentrancyGuard {
     // Constructor to initialize contract and ownership
     constructor() payable Ownable(msg.sender) {}
 
-    // Add investors (restricted to onlyOwner)
+    mapping(address => bool) public isInvestor;
+
     function addInvestor(address _addr, uint _investmentAmount) public onlyOwner {
         require(_addr != address(0), "Invalid address");
         require(_investmentAmount > 0, "Investment amount must be greater than 0");
+        require(!isInvestor[_addr], "Investor already exists");
 
-        // Check if the investor already exists
-        for (uint i = 0; i < investors.length; i++) {
-            require(investors[i].addr != _addr, "Investor already exists");
-        }
-
-        // Add the investor to the array
         investors.push(Investor(_addr, _investmentAmount));
+        isInvestor[_addr] = true; // Mark as an investor
 
-        // Emit an event to log the addition of an investor
         emit InvestorAdded(_addr, _investmentAmount);
     }
 
@@ -105,11 +101,11 @@ contract BonusAllocator is Ownable, ReentrancyGuard {
         address investorAddress = investors[index].addr;
         uint investmentAmount = investors[index].investmentAmount;
 
-        // Remove the investor using the swap-and-pop technique to optimize gas
-        investors[index] = investors[investors.length - 1]; // Copy last element to the removed index
-        investors.pop(); // Remove the last element
+        isInvestor[investorAddress] = false; // Mark as removed
 
-        // Emit an event to log the removal of the investor
+        investors[index] = investors[investors.length - 1];
+        investors.pop();
+
         emit InvestorRemoved(investorAddress, investmentAmount);
     }
 

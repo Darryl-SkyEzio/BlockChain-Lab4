@@ -261,6 +261,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isInvestor",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -392,11 +411,11 @@
 			]
 		},
 		"bonusallocation.sol": {
-			"keccak256": "0x48d282673ca09a14e1bd9f472169b9b9a1afbea5331cd147b7ec966a5ab1eb26",
+			"keccak256": "0x5840c5c96a7763d875955d7d090f300024b4c29cf6140451bd2ed95424676c1c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c67ca4e6897c0b32b51b5cec1bde9880141a8ba9f40d075b66bea3af6b74c428",
-				"dweb:/ipfs/QmZF2DQoyeWv6wHnGYVMMhdGgkag7NeZYC7xCY6UcmMHVt"
+				"bzz-raw://da858156c8a68c507596e9a263e8593f43363e7b9c52720ff5b868e6e550346d",
+				"dweb:/ipfs/QmcjzmDa7f2czL6xw52mxForyWJ6gr1UDoWXZqfzvmPUQo"
 			]
 		}
 	},
