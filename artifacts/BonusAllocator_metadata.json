@@ -76,6 +76,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "investmentAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "InvestorRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "previousOwner",
 						"type": "address"
 					},
@@ -205,6 +224,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getInvestorsCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -239,6 +271,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "removeInvestor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -347,11 +392,11 @@
 			]
 		},
 		"bonusallocation.sol": {
-			"keccak256": "0x0b3d75ce244bd472b670abf46fbe778a963dc688ea43602b1d1403ba4f3c08d5",
+			"keccak256": "0x48d282673ca09a14e1bd9f472169b9b9a1afbea5331cd147b7ec966a5ab1eb26",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://548f9b3e3232ca7f279c03d802d7563a636addafee9fadb369236257a36d4930",
-				"dweb:/ipfs/QmWEpSyqBFE1nw5jtR6W4J6cvYZe59EL6Y8e2ZKF3AgAcy"
+				"bzz-raw://c67ca4e6897c0b32b51b5cec1bde9880141a8ba9f40d075b66bea3af6b74c428",
+				"dweb:/ipfs/QmZF2DQoyeWv6wHnGYVMMhdGgkag7NeZYC7xCY6UcmMHVt"
 			]
 		}
 	},

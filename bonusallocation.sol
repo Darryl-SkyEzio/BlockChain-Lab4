@@ -95,4 +95,25 @@ contract BonusAllocator is Ownable, ReentrancyGuard {
     function getContractBalance() public view returns (uint) {
         return address(this).balance;
     }
+
+        // Event to track when an investor is removed
+    event InvestorRemoved(address indexed addr, uint investmentAmount);
+
+    function removeInvestor(uint index) public onlyOwner {
+        require(index < investors.length, "Index out of bounds");
+
+        address investorAddress = investors[index].addr;
+        uint investmentAmount = investors[index].investmentAmount;
+
+        // Remove the investor using the swap-and-pop technique to optimize gas
+        investors[index] = investors[investors.length - 1]; // Copy last element to the removed index
+        investors.pop(); // Remove the last element
+
+        // Emit an event to log the removal of the investor
+        emit InvestorRemoved(investorAddress, investmentAmount);
+    }
+
+    function getInvestorsCount() public view returns (uint) {
+    return investors.length;
+}
 }
