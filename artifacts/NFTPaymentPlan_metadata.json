@@ -1,0 +1,333 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "remainingPayments",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountPaid",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "remainingAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "PaymentMade",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "penaltyAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "PenaltyApplied",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalCost",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "monthlyPayment",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalPayments",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "startDate",
+						"type": "string"
+					}
+				],
+				"name": "PlanCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountForfeited",
+						"type": "uint256"
+					}
+				],
+				"name": "PlanDefaulted",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "buyerPlans",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalCost",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "paymentPerMonth",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalPayments",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "penaltyPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "paymentDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nextPaymentDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainingAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainingPayments",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "missedPayments",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalCost",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalPayments",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_penaltyPercent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startDay",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_startMonth",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startYear",
+						"type": "uint256"
+					}
+				],
+				"name": "createPaymentPlan",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					}
+				],
+				"name": "getPlanDetails",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalCost",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "monthlyPayment",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainingAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "nextPaymentDueDate",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remainingPayments",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "missedPayments",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "makePayment",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "seller",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"NFT_Payments.sol": "NFTPaymentPlan"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"NFT_Payments.sol": {
+			"keccak256": "0xd1dacf97f3e7d9663600a09f917960179abb5b76d9f3f5a91a1b054027e8d755",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ea7c89563f5a2ff9230452c81ced387a05dffcf220750378f713265e126dbdbe",
+				"dweb:/ipfs/QmPviaQ3jjNW2Zj581ubk2NDCx3SpqrLRjmCD4QMYoCJMK"
+			]
+		}
+	},
+	"version": 1
+}
